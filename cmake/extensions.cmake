@@ -31,7 +31,7 @@ macro(tiny_library_named name)
 
   tiny_append_cmake_library(${name})
 
-  target_link_libraries(${name} PUBLIC tinylibs_interface)
+  target_link_libraries(${name} PUBLIC tiny_interface)
 endmacro()
 
 #
@@ -81,12 +81,12 @@ function(tiny_link_libraries)
                           "called with too many arguments.")
     elseif(ARGC EQUAL 3)
       target_link_libraries(
-        tinylibs_interface INTERFACE $<${property_defined}:${property}${ARGV2}>)
+        tiny_interface INTERFACE $<${property_defined}:${property}${ARGV2}>)
     else()
-      target_link_libraries(tinylibs_interface INTERFACE ${property})
+      target_link_libraries(tiny_interface INTERFACE ${property})
     endif()
   else()
-    target_link_libraries(tinylibs_interface INTERFACE ${ARGV})
+    target_link_libraries(tiny_interface INTERFACE ${ARGV})
   endif()
 endfunction()
 
@@ -95,7 +95,7 @@ function(tiny_sources)
     if(IS_DIRECTORY ${arg})
       message(FATAL_ERROR "tiny_sources() was called on a directory")
     endif()
-    target_sources(tinylibs PRIVATE ${arg})
+    target_sources(tiny PRIVATE ${arg})
   endforeach()
 endfunction()
 
@@ -107,10 +107,10 @@ endfunction()
 
 # https://cmake.org/cmake/help/latest/command/target_include_directories.html
 function(tiny_include_directories)
-  target_include_directories(tinylibs_interface INTERFACE ${ARGV})
+  target_include_directories(tiny_interface INTERFACE ${ARGV})
 endfunction()
 
 # https://cmake.org/cmake/help/latest/command/target_compile_definitions.html
 function(tiny_compile_definitions)
-  target_compile_definitions(tinylibs_interface INTERFACE ${ARGV})
+  target_compile_definitions(tiny_interface INTERFACE ${ARGV})
 endfunction()
