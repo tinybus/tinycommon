@@ -60,9 +60,9 @@ ForEachMacros:
   - Q_FOREACH
   - BOOST_FOREACH
 IncludeCategories:
-  - Regex:           '^<tinyplatform/.*/'
+  - Regex:           '^<tiny/.*/'
     Priority:        4
-  - Regex:           '^<tinyplatform/'
+  - Regex:           '^<tiny/'
     Priority:        3
   - Regex:           '^<'
     Priority:        2
