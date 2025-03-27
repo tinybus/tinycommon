@@ -57,5 +57,5 @@ endfunction()
 
 # https://cmake.org/cmake/help/latest/command/target_compile_definitions.html
 function(tiny_library_compile_definitions)
-  target_compile_definitions(${TINY_CURRENT_LIBRARY} INTERFACE ${ARGV})
+  target_compile_definitions(${TINY_CURRENT_LIBRARY} PRIVATE ${ARGV})
 endfunction()
