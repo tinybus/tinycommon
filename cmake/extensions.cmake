@@ -2,7 +2,7 @@
 macro(tiny_library_named name)
   # This is a macro because we need add_library() to be executed within the
   # scope of the caller.
-  set(TINY_CURRENT_LIBRARY ${name})
+  set(TY_CURRENT_LIBRARY ${name})
   add_library(${name} STATIC "")
 
   tiny_append_cmake_library(${name})
@@ -14,11 +14,11 @@ endmacro()
 # relocation feature of tiny_code_relocate
 #
 function(tiny_library_sources source)
-  target_sources(${TINY_CURRENT_LIBRARY} PRIVATE ${source} ${ARGN})
+  target_sources(${TY_CURRENT_LIBRARY} PRIVATE ${source} ${ARGN})
 endfunction()
 
 function(tiny_library_include_directories)
-  target_include_directories(${TINY_CURRENT_LIBRARY} PRIVATE ${ARGN})
+  target_include_directories(${TY_CURRENT_LIBRARY} PRIVATE ${ARGN})
 endfunction()
 
 function(tiny_library_include_directories_public)
@@ -26,11 +26,11 @@ function(tiny_library_include_directories_public)
 endfunction()
 
 function(tiny_library_link_libraries item)
-  target_link_libraries(${TINY_CURRENT_LIBRARY} PUBLIC ${item} ${ARGN})
+  target_link_libraries(${TY_CURRENT_LIBRARY} PUBLIC ${item} ${ARGN})
 endfunction()
 
 function(tiny_library_compile_definitions item)
-  target_compile_definitions(${TINY_CURRENT_LIBRARY} PRIVATE ${item} ${ARGN})
+  target_compile_definitions(${TY_CURRENT_LIBRARY} PRIVATE ${item} ${ARGN})
 endfunction()
 
 # Add the existing CMake library 'library' to the global list of Tiny CMake
@@ -46,7 +46,7 @@ function(tiny_append_cmake_library library)
         "creating a Tiny module. See more here: "
         "https://docs.zephyrproject.org/latest/guides/modules.html")
   endif()
-  set_property(GLOBAL APPEND PROPERTY TINY_LIBS ${library})
+  set_property(GLOBAL APPEND PROPERTY TY_LIBS ${library})
 endfunction()
 
 function(tiny_library_sources_ifdef feature_toggle)
